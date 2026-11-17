@@ -1,0 +1,222 @@
+{
+  "split": "stratified 80/20 of baseline, SMOTE on train split only, seed 42",
+  "leaderboard": {
+    "XGBoost": {
+      "macro_f1": 0.7481,
+      "weighted_f1": 0.9851,
+      "accuracy": 0.9843,
+      "f1_NoFailure": 0.9922,
+      "f1_TWF": 0.1333,
+      "f1_HDF": 0.9655,
+      "f1_PWF": 0.88,
+      "f1_OSF": 0.7692
+    },
+    "RandomForest": {
+      "macro_f1": 0.7355,
+      "weighted_f1": 0.9855,
+      "accuracy": 0.985,
+      "f1_NoFailure": 0.9926,
+      "f1_TWF": 0.0,
+      "f1_HDF": 0.9286,
+      "f1_PWF": 0.9565,
+      "f1_OSF": 0.8
+    },
+    "LightGBM": {
+      "macro_f1": 0.7296,
+      "weighted_f1": 0.9851,
+      "accuracy": 0.9843,
+      "f1_NoFailure": 0.9922,
+      "f1_TWF": 0.0,
+      "f1_HDF": 0.9655,
+      "f1_PWF": 0.8333,
+      "f1_OSF": 0.8571
+    },
+    "LogisticRegression": {
+      "macro_f1": 0.5312,
+      "weighted_f1": 0.9328,
+      "accuracy": 0.9042,
+      "f1_NoFailure": 0.9483,
+      "f1_TWF": 0.1449,
+      "f1_HDF": 0.4545,
+      "f1_PWF": 0.4583,
+      "f1_OSF": 0.65
+    }
+  },
+  "tuned_xgboost": {
+    "macro_f1": 0.7672,
+    "weighted_f1": 0.9828,
+    "accuracy": 0.9771,
+    "f1_NoFailure": 0.9885,
+    "f1_TWF": 0.069,
+    "f1_HDF": 0.9655,
+    "f1_PWF": 0.9167,
+    "f1_OSF": 0.8966,
+    "best_params": {
+      "n_estimators": 407,
+      "max_depth": 6,
+      "learning_rate": 0.032501348640434566,
+      "min_child_weight": 4.943171507420209,
+      "subsample": 0.8363548736010726,
+      "colsample_bytree": 0.9147422831957723,
+      "gamma": 1.6298148775915886,
+      "reg_alpha": 3.5960813125765994e-05,
+      "reg_lambda": 0.009187218047421607
+    },
+    "registry_version": 1
+  },
+  "drift": {
+    "stable": {
+      "dataset_drift": false,
+      "drifted_features": 0,
+      "n_features": 5,
+      "features": [
+        {
+          "feature": "Air temperature",
+          "drift": false,
+          "wasserstein": 0.0548,
+          "ref_mean": 300.01,
+          "batch_mean": 299.92,
+          "delta_pct": -0.03
+        },
+        {
+          "feature": "Rotational speed",
+          "drift": false,
+          "wasserstein": 0.0526,
+          "ref_mean": 1539.02,
+          "batch_mean": 1530.17,
+          "delta_pct": -0.58
+        },
+        {
+          "feature": "Torque",
+          "drift": false,
+          "wasserstein": 0.04,
+          "ref_mean": 40.0,
+          "batch_mean": 40.22,
+          "delta_pct": 0.56
+        },
+        {
+          "feature": "Process temperature",
+          "drift": false,
+          "wasserstein": 0.0244,
+          "ref_mean": 310.0,
+          "batch_mean": 310.0,
+          "delta_pct": -0.0
+        },
+        {
+          "feature": "Tool wear",
+          "drift": false,
+          "wasserstein": 0.0181,
+          "ref_mean": 107.68,
+          "batch_mean": 108.2,
+          "delta_pct": 0.48
+        }
+      ],
+      "macro_f1": 0.7422756074875014,
+      "accuracy": 0.9659773182121414,
+      "f1_OSF": 0.8125,
+      "osf_share_pct": 1.0006671114076051,
+      "strain_gt_11000_pct": 1.400933955970647
+    },
+    "heavy_load": {
+      "dataset_drift": true,
+      "drifted_features": 3,
+      "n_features": 5,
+      "features": [
+        {
+          "feature": "Tool wear",
+          "drift": true,
+          "wasserstein": 0.6455,
+          "ref_mean": 107.68,
+          "batch_mean": 148.87,
+          "delta_pct": 38.25
+        },
+        {
+          "feature": "Torque",
+          "drift": true,
+          "wasserstein": 0.4739,
+          "ref_mean": 40.0,
+          "batch_mean": 44.72,
+          "delta_pct": 11.82
+        },
+        {
+          "feature": "Rotational speed",
+          "drift": true,
+          "wasserstein": 0.2354,
+          "ref_mean": 1539.02,
+          "batch_mean": 1497.07,
+          "delta_pct": -2.73
+        },
+        {
+          "feature": "Process temperature",
+          "drift": false,
+          "wasserstein": 0.0377,
+          "ref_mean": 310.0,
+          "batch_mean": 310.01,
+          "delta_pct": 0.0
+        },
+        {
+          "feature": "Air temperature",
+          "drift": false,
+          "wasserstein": 0.0344,
+          "ref_mean": 300.01,
+          "batch_mean": 300.05,
+          "delta_pct": 0.01
+        }
+      ],
+      "macro_f1": 0.5316602542724175,
+      "accuracy": 0.8832555036691128,
+      "f1_OSF": 0.6256983240223464,
+      "osf_share_pct": 3.8692461641094065,
+      "strain_gt_11000_pct": 11.407605070046698
+    }
+  },
+  "shap_mean_abs": {
+    "TWF": {
+      "Type_enc": 0.08959999680519104,
+      "Air temperature": 0.10980000346899033,
+      "Process temperature": 0.08219999819993973,
+      "Rotational speed": 0.1850000023841858,
+      "Torque": 0.39070001244544983,
+      "Tool wear": 3.1312999725341797,
+      "Power_W": 0.35989999771118164,
+      "Temp_diff": 0.14110000431537628
+    },
+    "HDF": {
+      "Type_enc": 0.007600000128149986,
+      "Air temperature": 0.34209999442100525,
+      "Process temperature": 0.03550000116229057,
+      "Rotational speed": 1.9648000001907349,
+      "Torque": 0.06449999660253525,
+      "Tool wear": 0.2298000007867813,
+      "Power_W": 0.01590000092983246,
+      "Temp_diff": 2.6995999813079834
+    },
+    "PWF": {
+      "Type_enc": 0.0,
+      "Air temperature": 0.018300000578165054,
+      "Process temperature": 0.18790000677108765,
+      "Rotational speed": 0.0066999997943639755,
+      "Torque": 0.38960000872612,
+      "Tool wear": 0.5085999965667725,
+      "Power_W": 3.2392001152038574,
+      "Temp_diff": 0.05550000071525574
+    },
+    "OSF": {
+      "Type_enc": 0.22450000047683716,
+      "Air temperature": 0.03799999877810478,
+      "Process temperature": 0.007400000002235174,
+      "Rotational speed": 0.12479999661445618,
+      "Torque": 1.9023000001907349,
+      "Tool wear": 1.8693000078201294,
+      "Power_W": 0.5030999779701233,
+      "Temp_diff": 0.08879999816417694
+    }
+  },
+  "shap_top_driver": {
+    "TWF": "Tool wear",
+    "HDF": "Temp_diff",
+    "PWF": "Power_W",
+    "OSF": "Torque"
+  },
+  "retrain_recommended": true
+}
